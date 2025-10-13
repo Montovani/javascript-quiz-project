@@ -23,6 +23,6 @@ class Question {
     }
 }
 
-const questionOne = new Question('what is the color below?',['yellow','red','blue'], 'blue', 1)
+const questionOne = new Question('what is the color below?',['yellow','red','blue'], 'blue', 1) // example queston, probably array that we use on quiz class named 'questions; goingt to consist of these objects
 
 console.log(questionOne.shuffleChoices())
