@@ -1,16 +1,16 @@
 class Quiz {
- 
-    constructor(questions,timeLimit,timeRemaining) {
+
+    constructor(questions, timeLimit, timeRemaining) {
         this.questions = questions
         this.timeLimit = timeLimit
         this.timeRemaining = timeRemaining
         this.correctAnswers = 0
         this.currentQuestionIndex = 0
     }
-   getQuestion() {
-    return this.questions[this.currentQuestionIndex]
-   }
-    
+    getQuestion() {
+        return this.questions[this.currentQuestionIndex]
+    }
+
     moveToNextQuestion() {
         this.currentQuestionIndex++
     }
@@ -24,14 +24,14 @@ class Quiz {
         return this.questions
     }
 
-    checkAnswer(answer){
+    checkAnswer(answer) {
 
-        if(answer === this.questions[this.currentQuestionIndex].answer){
+        if (answer === this.questions[this.currentQuestionIndex].answer) {
             this.correctAnswers++
         }
 
     }
-    
+
     hasEnded() {
         if (this.currentQuestionIndex < this.questions.length) {
             return false
@@ -39,5 +39,16 @@ class Quiz {
             return true
         }
     }
-}
 
+    filterQuestionsByDifficulty(difficulty) {
+
+        if(difficulty > 3 || difficulty <= 0 || typeof difficulty !== "number"){
+            return
+        }
+
+        this.questions = this.questions.filter(question => {
+            return question.difficulty === difficulty
+        })
+
+    }
+}
