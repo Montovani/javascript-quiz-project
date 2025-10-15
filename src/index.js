@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // View divs
   const quizView = document.querySelector("#quizView");
   const endView = document.querySelector("#endView");
-
   // Quiz view elements
   const progressBar = document.querySelector("#progressBar");
   const questionCount = document.querySelector("#questionCount");
@@ -99,21 +98,42 @@ document.addEventListener("DOMContentLoaded", () => {
     //
     // 1. Show the question
     // Update the inner text of the question container element and show the question text
-
+    questionContainer.innerText = question.text
     
     // 2. Update the green progress bar
     // Update the green progress bar (div#progressBar) width so that it shows the percentage of questions answered
-    
-    progressBar.style.width = `65%`; // This value is hardcoded as a placeholder
+  
+    progressBar.style.width = `${((quiz.currentQuestionIndex + 1/questions.length)*100)}%`; // This value is hardcoded as a placeholder
 
 
 
     // 3. Update the question count text 
     // Update the question count (div#questionCount) show the current question out of total questions
     
-    questionCount.innerText = `Question 1 of 10`; //  This value is hardcoded as a placeholder
+    questionCount.innerText = `${quiz.currentQuestionIndex +1} of ${questions.length}`; //  This value is hardcoded as a placeholder
+
+    question.choices.forEach((choice) => {
+      // choiceContainer.innerHTML += `<li><input type="radio" name="choice" value="${choice}"/><label> ${choice} </label></li>`
+
+      //Longest way
+      const liNode = document.createElement("li")
+      const inputNode = document.createElement("input")
+      inputNode.type = "radio"
+      inputNode.name = "choice"
+      inputNode.value = `${choice}`
+      const labelNode = document.createElement("label")
+      labelNode.innerHTML = `${choice}`
+
+      liNode.appendChild(inputNode)
+      liNode.appendChild(labelNode)
+      choiceContainer.appendChild(liNode)
 
 
+      
+
+
+    })
+    
     
     // 4. Create and display new radio input element with a label for each choice.
     // Loop through the current question `choices`.
