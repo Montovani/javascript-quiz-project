@@ -129,8 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       choiceContainer.appendChild(liNode)
 
 
-      
-
+    
 
     })
     
