@@ -9,10 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const questionContainer = document.querySelector("#question");
   const choiceContainer = document.querySelector("#choices");
   const nextButton = document.querySelector("#nextButton");
-
-
+  
+  
+  
   // End view elements
   const resultContainer = document.querySelector("#result");
+  const restartButton = document.querySelector("#restartButton");
+  restartButton.style.display = "none"; // Hide the restart button initially
 
 
   /************  SET VISIBILITY OF VIEWS  ************/
@@ -220,12 +223,24 @@ document.addEventListener("DOMContentLoaded", () => {
     //
     // 1. Hide the quiz view (div#quizView)
     quizView.style.display = "none";
-
+    
     // 2. Show the end view (div#endView)
     endView.style.display = "flex";
-
+    
     // 3. Update the result container (div#result) inner text to show the number of correct answers out of total questions
-    resultContainer.innerText = `You scored 1 out of 1 correct answers!`; // This value is hardcoded as a placeholder
+    resultContainer.innerText = `You scored ${quiz.correctAnswers} out of ${quiz.questions.length} correct answers!`; // This value is hardcoded as a placeholder
+    
+    restartButton.style.display = "flex"
   }
+  
+  restartButton.addEventListener('click', () => {
+    quiz.currentQuestionIndex = 0
+    endView.style.display = "none";
+    quizView.style.display = "flex";
+    quiz.correctAnswers = 0
+    quiz.shuffleQuestions()
+    showQuestion()
+  })
 
 });
+
